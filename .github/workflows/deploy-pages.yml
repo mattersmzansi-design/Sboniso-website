@@ -5,7 +5,6 @@ on:
   push:
     branches:
       - main
-      - claude/website-rebuild-company-profile-tfogym
   workflow_dispatch:
 
 permissions:
