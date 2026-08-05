@@ -230,19 +230,70 @@ header {
     border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-lift);
+    perspective: 1600px;
+    background:
+        radial-gradient(55% 40% at 22% 26%, rgba(255,255,255,0.85), transparent 60%),
+        radial-gradient(45% 32% at 78% 20%, rgba(255,255,255,0.70), transparent 60%),
+        radial-gradient(50% 42% at 62% 88%, rgba(160,200,222,0.55), transparent 60%),
+        linear-gradient(180deg, #d7ecff 0%, #e9f5ee 58%, #d6ebe0 100%);
+    background-size: 140% 140%, 130% 130%, 150% 150%, 100% 100%;
+    animation: skyDrift 26s ease-in-out infinite alternate;
 }
 
+@keyframes skyDrift {
+    0%   { background-position: 0% 0%, 100% 0%, 50% 100%, 0 0; }
+    100% { background-position: 32% 22%, 68% 14%, 60% 84%, 0 0; }
+}
+
+/* Floating coverflow cards — the centre card lifts forward, neighbours
+   tilt and drift back, rotating through as the show advances. */
 .slide {
     position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity 0.7s ease-in-out;
+    top: 6%;
+    left: 20%;
+    width: 60%;
+    height: 88%;
+    border-radius: var(--radius);
+    overflow: hidden;
     background-size: cover;
     background-position: center;
+    box-shadow: 0 34px 70px -28px rgba(13, 28, 20, 0.7);
+    opacity: 0;
+    transform: translate3d(0, 0, -340px) scale(0.68);
+    transition: transform 0.9s cubic-bezier(.19, .72, .24, 1), opacity 0.9s ease;
+    transform-style: preserve-3d;
+    will-change: transform, opacity;
     pointer-events: none;
+    z-index: 1;
 }
 
-.slide.active { opacity: 1; pointer-events: auto; }
+.slide.active {
+    opacity: 1;
+    transform: translate3d(0, 0, 110px) rotateY(0deg) scale(1);
+    z-index: 4;
+    pointer-events: auto;
+}
+.slide.is-prev {
+    opacity: 0.55;
+    transform: translate3d(-62%, 0, -30px) rotateY(32deg) scale(0.84);
+    z-index: 3;
+}
+.slide.is-next {
+    opacity: 0.55;
+    transform: translate3d(62%, 0, -30px) rotateY(-32deg) scale(0.84);
+    z-index: 3;
+}
+.slide.is-far-prev {
+    opacity: 0;
+    transform: translate3d(-108%, 0, -190px) rotateY(38deg) scale(0.70);
+    z-index: 2;
+}
+.slide.is-far-next {
+    opacity: 0;
+    transform: translate3d(108%, 0, -190px) rotateY(-38deg) scale(0.70);
+    z-index: 2;
+}
+.slide:not(.active) .slide-caption { opacity: 0; }
 
 .slide::after {
     content: "";
@@ -255,8 +306,9 @@ header {
     position: absolute;
     left: 0; right: 0; bottom: 0;
     z-index: 3;
-    padding: 40px 52px 64px;
+    padding: 34px 38px 40px;
     max-width: 1100px;
+    transition: opacity 0.6s ease 0.15s;
 }
 
 .slide-phase {
@@ -852,10 +904,47 @@ footer {
     .cta-strip h2 { font-size: 1.5rem; }
 }
 
+@media (max-width: 900px) {
+    .slide { width: 78%; left: 11%; }
+    .slide.is-prev { transform: translate3d(-52%, 0, -30px) rotateY(28deg) scale(0.82); }
+    .slide.is-next { transform: translate3d(52%, 0, -30px) rotateY(-28deg) scale(0.82); }
+    .slide-caption { padding: 22px 22px 28px; }
+}
+
 @media (max-width: 560px) {
     .logo-text .title { font-size: 1.05rem; }
     .logo-seal { width: 44px; height: 44px; }
     .slideshow { height: 62vh; min-height: 380px; border-radius: var(--radius); }
+    .slide { width: 86%; left: 7%; }
     .cta-strip { flex-direction: column; align-items: flex-start; }
     .section-title { font-size: 1.45rem; }
+}
+
+/* ---------------- Entrance "buzz" on open ---------------- */
+@keyframes pageBuzz {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    15% { transform: translate3d(-3px, 1px, 0) rotate(-0.4deg); }
+    30% { transform: translate3d(4px, -1px, 0) rotate(0.4deg); }
+    45% { transform: translate3d(-4px, 1px, 0) rotate(-0.3deg); }
+    60% { transform: translate3d(3px, -1px, 0) rotate(0.3deg); }
+    75% { transform: translate3d(-2px, 1px, 0) rotate(-0.2deg); }
+    90% { transform: translate3d(2px, 0, 0); }
+}
+@keyframes sealBuzz {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    20% { transform: rotate(-9deg) scale(1.08); }
+    40% { transform: rotate(8deg) scale(1.08); }
+    60% { transform: rotate(-6deg) scale(1.05); }
+    80% { transform: rotate(4deg) scale(1.03); }
+}
+.page-enter header { animation: pageBuzz 0.6s ease-in-out both; }
+.page-enter .logo-seal { animation: sealBuzz 0.7s ease-in-out both; }
+.page-enter .slideshow { animation: skyDrift 26s ease-in-out infinite alternate, pageBuzz 0.6s ease-in-out both; }
+
+@media (prefers-reduced-motion: reduce) {
+    .slideshow { animation: none; }
+    .slide { transition: opacity 0.4s ease; }
+    .page-enter header,
+    .page-enter .logo-seal,
+    .page-enter .slideshow { animation: none; }
 }
