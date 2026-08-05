@@ -5,6 +5,34 @@
 (function () {
     "use strict";
 
+    /* ---------- Buzz / haptic on open ---------- */
+    (function () {
+        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        function buzz() {
+            if (reduce || !navigator.vibrate) return;
+            try { navigator.vibrate([45, 30, 70]); } catch (e) {}
+        }
+
+        // Visible shimmy so it's felt even on devices without a vibration motor.
+        if (!reduce) {
+            document.documentElement.classList.add("page-enter");
+            window.addEventListener("load", function () {
+                setTimeout(function () {
+                    document.documentElement.classList.remove("page-enter");
+                }, 800);
+            });
+        }
+
+        // Try to vibrate immediately; most mobile browsers only allow it after a
+        // user gesture, so also fire on the very first tap as a guaranteed fallback.
+        buzz();
+        document.addEventListener("pointerdown", function firstTap() {
+            buzz();
+            document.removeEventListener("pointerdown", firstTap);
+        }, { once: true });
+    })();
+
     /* ---------- Mobile navigation ---------- */
     const navToggle = document.querySelector(".nav-toggle");
     const mainNav = document.querySelector(".main-nav");
@@ -40,8 +68,19 @@
             return d;
         });
 
+        const POS = ["active", "is-prev", "is-next", "is-far-prev", "is-far-next"];
         function render() {
-            slides.forEach(function (s, i) { s.classList.toggle("active", i === current); });
+            const n = slides.length;
+            slides.forEach(function (s, i) {
+                s.classList.remove.apply(s.classList, POS);
+                const rel = (i - current + n) % n; // 0 = centre, 1 = next, n-1 = prev
+                if (rel === 0) s.classList.add("active");
+                else if (rel === 1) s.classList.add("is-next");
+                else if (rel === n - 1) s.classList.add("is-prev");
+                else if (rel === 2) s.classList.add("is-far-next");
+                else if (rel === n - 2) s.classList.add("is-far-prev");
+                // any others stay in the hidden default (pushed far back)
+            });
             dots.forEach(function (d, i) { d.classList.toggle("active", i === current); });
         }
 
