@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product — COMPACT</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23101010%22/><text x=%2250%22 y=%2268%22 font-size=%2260%22 font-family=%22Arial%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22>C</text></svg>">
+  <link rel="stylesheet" href="css/store.css">
+</head>
+<body>
+
+  <div class="announce">Free delivery on orders over R 1,500 — nationwide</div>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <button class="menu-toggle" aria-label="Menu">☰</button>
+      <nav class="main-nav">
+        <a href="shop.html">Shop All</a>
+        <a href="shop.html?cat=T-Shirts">T-Shirts</a>
+        <a href="shop.html?cat=Hoodies">Hoodies</a>
+        <a href="shop.html?cat=Pants">Pants</a>
+        <a href="shop.html?cat=Headwear">Headwear</a>
+      </nav>
+      <a class="logo" href="index.html">Compact</a>
+      <div class="header-actions">
+        <a href="track.html">Track Order</a>
+        <a href="cart.html">Bag <span class="cart-count">0</span></a>
+      </div>
+    </div>
+  </header>
+
+  <section class="section" id="pdp-section">
+    <div class="wrap pdp" id="pdp">
+
+      <!-- GALLERY — replace placeholders with product photography -->
+      <div class="pdp-gallery">
+        <div class="pdp-main-img">Product image</div>
+        <div class="pdp-thumbs">
+          <div>1</div><div>2</div><div>3</div><div>4</div>
+        </div>
+      </div>
+
+      <div class="pdp-info">
+        <div>
+          <p class="eyebrow" id="pdp-cat">Category</p>
+          <h1 id="pdp-name">Product Name</h1>
+        </div>
+        <div class="pdp-price" id="pdp-price">R 0.00</div>
+        <p class="pdp-desc" id="pdp-desc">Product description goes here — fabric, fit and care details.</p>
+
+        <div class="option-row">
+          <h4>Size</h4>
+          <div class="size-options" id="pdp-sizes"></div>
+        </div>
+
+        <div class="option-row">
+          <h4>Quantity</h4>
+          <div class="qty-picker">
+            <button type="button" id="qty-minus">−</button>
+            <input type="text" id="pdp-qty" value="1" readonly>
+            <button type="button" id="qty-plus">+</button>
+          </div>
+        </div>
+
+        <button class="btn full" id="add-to-cart">Add to Bag</button>
+
+        <div class="accordion">
+          <details>
+            <summary>Details &amp; Composition</summary>
+            <div class="acc-body">Material and composition details go here.</div>
+          </details>
+          <details>
+            <summary>Delivery &amp; Returns</summary>
+            <div class="acc-body">Standard delivery 3–5 working days. Free returns within 30 days. Edit this copy to match your policy.</div>
+          </details>
+          <details>
+            <summary>Size Guide</summary>
+            <div class="acc-body">Size guide table or link goes here.</div>
+          </details>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">You may also like</p>
+          <h2 class="section-title">Complete the Look</h2>
+        </div>
+      </div>
+      <div class="product-grid" id="related-grid"></div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-bottom">
+        <span>© 2026 COMPACT. All rights reserved.</span>
+        <span><a href="track.html">Track Order</a> · South Africa · ZAR</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/store.js"></script>
+</body>
+</html>

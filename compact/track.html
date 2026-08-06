@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Your Order — COMPACT</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23101010%22/><text x=%2250%22 y=%2268%22 font-size=%2260%22 font-family=%22Arial%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22>C</text></svg>">
+  <link rel="stylesheet" href="css/store.css">
+</head>
+<body>
+
+  <div class="announce">Free delivery on orders over R 1,500 — nationwide</div>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <button class="menu-toggle" aria-label="Menu">☰</button>
+      <nav class="main-nav">
+        <a href="shop.html">Shop All</a>
+        <a href="shop.html?cat=T-Shirts">T-Shirts</a>
+        <a href="shop.html?cat=Hoodies">Hoodies</a>
+        <a href="shop.html?cat=Pants">Pants</a>
+        <a href="shop.html?cat=Headwear">Headwear</a>
+      </nav>
+      <a class="logo" href="index.html">Compact</a>
+      <div class="header-actions">
+        <a href="track.html" style="border-bottom:1px solid var(--ink)">Track Order</a>
+        <a href="cart.html">Bag <span class="cart-count">0</span></a>
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="wrap track-box">
+      <p class="eyebrow" style="text-align:center">Order Tracking</p>
+      <h1 style="text-align:center;font-size:clamp(26px,4vw,40px)">Track Your Order</h1>
+      <p style="text-align:center;color:var(--ink-soft);margin-top:8px">
+        Enter the order number from your confirmation to see where your parcel is.
+      </p>
+
+      <form class="track-form" id="track-form">
+        <input type="text" id="track-input" placeholder="e.g. CMP-123456" aria-label="Order number">
+        <button type="submit" class="btn">Track</button>
+      </form>
+      <p class="track-hint">Your order number starts with CMP- and is shown on your confirmation page.</p>
+      <p class="track-error" id="track-error">We couldn't find that order number. Please check it and try again.</p>
+
+      <div class="track-result" id="track-result">
+        <div class="track-summary">
+          <div><span>Order</span><strong id="tr-number">—</strong></div>
+          <div><span>Placed</span><strong id="tr-date">—</strong></div>
+          <div><span>Items</span><strong id="tr-items">—</strong></div>
+          <div><span>Total</span><strong id="tr-total">—</strong></div>
+          <div><span>Status</span><strong id="tr-status">—</strong></div>
+        </div>
+        <div class="timeline" id="timeline"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-bottom">
+        <span>© 2026 COMPACT. All rights reserved.</span>
+        <span>South Africa · ZAR</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/store.js"></script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COMPACT — Modern Clothing Store</title>
+  <meta name="description" content="COMPACT — a modern clothing store. New season coming soon.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23101010%22/><text x=%2250%22 y=%2268%22 font-size=%2260%22 font-family=%22Arial%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22>C</text></svg>">
+  <link rel="stylesheet" href="css/store.css">
+</head>
+<body>
+
+  <div class="announce">Free delivery on orders over R 1,500 — nationwide</div>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <button class="menu-toggle" aria-label="Menu">☰</button>
+      <nav class="main-nav">
+        <a href="shop.html" class="active">Shop All</a>
+        <a href="shop.html?cat=T-Shirts">T-Shirts</a>
+        <a href="shop.html?cat=Hoodies">Hoodies</a>
+        <a href="shop.html?cat=Pants">Pants</a>
+        <a href="shop.html?cat=Headwear">Headwear</a>
+      </nav>
+      <a class="logo" href="index.html">Compact</a>
+      <div class="header-actions">
+        <a href="track.html">Track Order</a>
+        <a href="cart.html">Bag <span class="cart-count">0</span></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO — replace .hero-media with a full-bleed campaign image/video -->
+  <section class="hero">
+    <div class="hero-media">Hero image / campaign video goes here</div>
+    <div class="hero-content">
+      <p class="eyebrow">New Season</p>
+      <h1>Wear Less.<br>Mean More.</h1>
+      <p>The new COMPACT collection is on its way. Clean lines, considered fabrics, everyday essentials.</p>
+      <a class="btn" href="shop.html">Shop the Collection</a>
+    </div>
+  </section>
+
+  <!-- CATEGORY TILES — replace .ph-label with category images -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Categories</p>
+          <h2 class="section-title">Shop by Category</h2>
+        </div>
+        <a class="link-more" href="shop.html">View All</a>
+      </div>
+      <div class="tile-grid">
+        <a class="tile" href="shop.html?cat=T-Shirts">
+          <span class="ph-label">Category image</span>
+          <div class="tile-caption"><span>T-Shirts</span><em>→</em></div>
+        </a>
+        <a class="tile" href="shop.html?cat=Hoodies">
+          <span class="ph-label">Category image</span>
+          <div class="tile-caption"><span>Hoodies</span><em>→</em></div>
+        </a>
+        <a class="tile" href="shop.html?cat=Pants">
+          <span class="ph-label">Category image</span>
+          <div class="tile-caption"><span>Pants</span><em>→</em></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS — rendered by store.js from the PRODUCTS array -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Featured</p>
+          <h2 class="section-title">New Arrivals</h2>
+        </div>
+        <a class="link-more" href="shop.html">Shop All</a>
+      </div>
+      <div class="product-grid" id="featured-grid"></div>
+    </div>
+  </section>
+
+  <!-- BRAND STRIP -->
+  <section class="section" style="background:var(--paper-alt)">
+    <div class="wrap" style="max-width:820px;text-align:center">
+      <p class="eyebrow">The Brand</p>
+      <h2 class="section-title" style="margin-bottom:14px">Built for the everyday</h2>
+      <p style="color:var(--ink-soft)">Brand story goes here. A short paragraph about what COMPACT stands for — quality, simplicity and pieces made to last.</p>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">Compact</div>
+          <p>Modern essentials, made simple. Brand tagline goes here.</p>
+          <div class="newsletter">
+            <input type="email" placeholder="Email address" aria-label="Email address">
+            <button type="button">Join</button>
+          </div>
+        </div>
+        <div>
+          <h5>Shop</h5>
+          <ul>
+            <li><a href="shop.html">All Products</a></li>
+            <li><a href="shop.html?cat=T-Shirts">T-Shirts</a></li>
+            <li><a href="shop.html?cat=Hoodies">Hoodies</a></li>
+            <li><a href="shop.html?cat=Pants">Pants</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Help</h5>
+          <ul>
+            <li><a href="track.html">Track Your Order</a></li>
+            <li><a href="#">Delivery &amp; Returns</a></li>
+            <li><a href="#">Size Guide</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Company</h5>
+          <ul>
+            <li><a href="#">About COMPACT</a></li>
+            <li><a href="#">Stores</a></li>
+            <li><a href="#">Terms &amp; Privacy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 COMPACT. All rights reserved.</span>
+        <span>South Africa · ZAR</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/store.js"></script>
+</body>
+</html>
