@@ -8,9 +8,10 @@
   --ink: #101010;          /* primary text / buttons */
   --ink-soft: #555;        /* secondary text */
   --ink-faint: #9a9a9a;    /* hints, placeholders */
-  --paper: #ffffff;        /* page background */
-  --paper-alt: #f5f4f2;    /* section / tile background */
-  --line: #e4e2de;         /* hairline borders */
+  --paper: #E9FFF7;        /* page background */
+  --paper-alt: #A7D8C7;    /* section / tile / placeholder background */
+  --placeholder-ink: #2f5445; /* label text on --paper-alt placeholder blocks (kept legible) */
+  --line: #cbe9dc;         /* hairline borders */
   --accent: #0a4d3c;       /* deep green accent */
   --danger: #b3261e;
   --radius: 2px;
@@ -108,7 +109,7 @@ input, select, textarea { font-family: inherit; font-size: 14px; }
 .hero-media {
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
-  color: var(--ink-faint); font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--placeholder-ink); font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
   background:
     repeating-linear-gradient(45deg, transparent 0 34px, rgba(0,0,0,.025) 34px 68px);
 }
@@ -161,7 +162,7 @@ input, select, textarea { font-family: inherit; font-size: 14px; }
 }
 .tile .ph-label {
   position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-  color: var(--ink-faint); font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--placeholder-ink); font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
 }
 .tile-caption {
   position: relative; width: 100%; padding: 18px 20px;
@@ -180,7 +181,7 @@ input, select, textarea { font-family: inherit; font-size: 14px; }
 .product-thumb {
   aspect-ratio: 3 / 4; background: var(--paper-alt); border: 1px solid var(--line);
   display: flex; align-items: center; justify-content: center;
-  color: var(--ink-faint); font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--placeholder-ink); font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
   transition: opacity .2s;
 }
 .product-card:hover .product-thumb { opacity: .8; }
@@ -222,13 +223,13 @@ input, select, textarea { font-family: inherit; font-size: 14px; }
 .pdp-main-img {
   aspect-ratio: 3 / 4; background: var(--paper-alt); border: 1px solid var(--line);
   display: flex; align-items: center; justify-content: center;
-  color: var(--ink-faint); font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--placeholder-ink); font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
 }
 .pdp-thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 .pdp-thumbs div {
   aspect-ratio: 1; background: var(--paper-alt); border: 1px solid var(--line);
   display: flex; align-items: center; justify-content: center;
-  color: var(--ink-faint); font-size: 10px;
+  color: var(--placeholder-ink); font-size: 10px;
 }
 .pdp-info { position: sticky; top: 96px; display: flex; flex-direction: column; gap: 20px; }
 @media (max-width: 900px) { .pdp-info { position: static; } }
@@ -276,7 +277,7 @@ input, select, textarea { font-family: inherit; font-size: 14px; }
 .cart-line .thumb {
   aspect-ratio: 3 / 4; background: var(--paper-alt); border: 1px solid var(--line);
   display: flex; align-items: center; justify-content: center;
-  color: var(--ink-faint); font-size: 9px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--placeholder-ink); font-size: 9px; letter-spacing: .1em; text-transform: uppercase;
 }
 .cart-line .line-info { display: flex; flex-direction: column; gap: 4px; }
 .cart-line .line-info .name { font-weight: 600; font-size: 14px; }
