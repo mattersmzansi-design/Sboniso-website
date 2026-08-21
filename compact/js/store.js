@@ -18,6 +18,30 @@ const STORE = {
     { id: "express", label: "Express Delivery", note: "1–2 working days", price: 160 },
     { id: "collect", label: "Click & Collect", note: "Collect in store — ready in 24h", price: 0 },
   ],
+  paymentMethods: [
+    {
+      id: "card",
+      label: "Credit / Debit Card",
+      note: "",
+      badges:
+        '<span class="pay-badge visa">VISA</span>' +
+        '<span class="pay-badge mastercard"><svg viewBox="0 0 40 24"><circle cx="13" cy="12" r="11" fill="#EB001B"></circle><circle cx="25" cy="12" r="11" fill="#F79E1B"></circle></svg></span>',
+    },
+    {
+      id: "eft",
+      label: "Instant EFT",
+      note: "Pay directly from your bank account",
+      badges:
+        '<span class="pay-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9L12 4L21 9"></path><path d="M4 9H20V19H4V9Z"></path><path d="M3 19H21"></path><path d="M7 12V16"></path><path d="M12 12V16"></path><path d="M17 12V16"></path></svg></span>',
+    },
+    {
+      id: "scan",
+      label: "Scan to Pay",
+      note: "Pay with your banking app",
+      badges:
+        '<span class="pay-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5C4 4.4 4.4 4 5 4H8"></path><path d="M16 4H19C19.6 4 20 4.4 20 5V8"></path><path d="M20 16V19C20 19.6 19.6 20 19 20H16"></path><path d="M8 20H5C4.4 20 4 19.6 4 19V16"></path><rect x="9" y="9" width="6" height="6" rx="1"></rect></svg></span>',
+    },
+  ],
 };
 
 /* Placeholder catalogue — swap these for real products. */
@@ -402,6 +426,28 @@ function initCheckoutPage() {
     renderSummary();
   });
 
+  /* payment method */
+  let paymentId = STORE.paymentMethods[0].id;
+  const payWrap = document.getElementById("payment-methods");
+  if (payWrap) {
+    payWrap.innerHTML = STORE.paymentMethods
+      .map((m, i) => (
+        '<label class="choice' + (i === 0 ? " selected" : "") + '">' +
+          '<input type="radio" name="payment" value="' + m.id + '"' + (i === 0 ? " checked" : "") + ">" +
+          '<span class="choice-main"><strong>' + m.label + "</strong>" +
+          (m.note ? "<span>" + m.note + "</span>" : "") +
+          '<span class="pay-badges">' + m.badges + "</span></span>" +
+        "</label>"
+      ))
+      .join("");
+    payWrap.addEventListener("change", (e) => {
+      if (e.target.name !== "payment") return;
+      paymentId = e.target.value;
+      payWrap.querySelectorAll(".choice").forEach((c) => c.classList.remove("selected"));
+      e.target.closest(".choice").classList.add("selected");
+    });
+  }
+
   renderSummary();
 
   /* submit */
@@ -432,6 +478,7 @@ function initCheckoutPage() {
         province: data.province, postal: data.postal,
       },
       shipping: shippingId,
+      payment: paymentId,
       items: lines,
       subtotal: sub,
       shippingCost: shippingCost(),

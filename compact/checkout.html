@@ -16,7 +16,7 @@
         <a href="shop.html" aria-label="Shop All" title="Shop All"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg><span class="nav-label">Shop All</span></a>
         <a href="cart.html" aria-label="Back to Bag" title="Back to Bag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 8V6.5C9 4.6 10.3 3 12 3C13.7 3 15 4.6 15 6.5V8"></path><path d="M6.2 8H17.8L17 20.5H7L6.2 8Z"></path></svg><span class="nav-label">Back to Bag</span></a>
       </nav>
-      <a class="logo" href="index.html">Compact</a>
+      <a class="logo" href="index.html">COMPACT<span class="reg">&reg;</span></a>
       <div class="header-actions">
         <a href="cart.html" aria-label="Bag" title="Bag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 8V6.5C9 4.6 10.3 3 12 3C13.7 3 15 4.6 15 6.5V8"></path><path d="M6.2 8H17.8L17 20.5H7L6.2 8Z"></path></svg><span class="cart-count">0</span></a>
       </div>
@@ -116,13 +116,12 @@
 
           <div class="form-section">
             <h3>Payment</h3>
-            <!-- PAYMENT GOES HERE: connect PayFast / Yoco / Stripe etc.
-                 For now this is a placeholder so the flow can be tested. -->
+            <div class="choice-list" id="payment-methods"></div>
+            <!-- GATEWAY GOES HERE: connect PayFast / Yoco / Stripe etc.
+                 For now selecting a method is cosmetic so the flow can be tested. -->
             <div class="pay-placeholder">
-              <strong>Payment gateway not connected yet.</strong><br>
-              This is where card / EFT / payment options will appear once a
-              payment provider is integrated. Placing the order below simulates
-              a successful payment.
+              <strong>Payment gateway not connected yet.</strong> Placing the
+              order below simulates a successful payment.
             </div>
           </div>
 
@@ -146,6 +145,12 @@
 
   <footer class="site-footer">
     <div class="wrap">
+      <div class="pay-accept">
+        <span>We Accept</span>
+        <span class="pay-badge visa">VISA</span>
+        <span class="pay-badge mastercard"><svg viewBox="0 0 40 24"><circle cx="13" cy="12" r="11" fill="#EB001B"></circle><circle cx="25" cy="12" r="11" fill="#F79E1B"></circle></svg></span>
+        <span class="pay-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5C4 4.4 4.4 4 5 4H8"></path><path d="M16 4H19C19.6 4 20 4.4 20 5V8"></path><path d="M20 16V19C20 19.6 19.6 20 19 20H16"></path><path d="M8 20H5C4.4 20 4 19.6 4 19V16"></path><rect x="9" y="9" width="6" height="6" rx="1"></rect></svg></span>
+      </div>
       <div class="footer-bottom">
         <span>© 2026 COMPACT. All rights reserved.</span>
         <span>Secure checkout · South Africa · ZAR</span>
