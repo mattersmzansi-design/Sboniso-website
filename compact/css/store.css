@@ -11,6 +11,14 @@
   font-display: swap;
   src: url("../fonts/big-shoulders-display-800.woff2") format("woff2");
 }
+@font-face {
+  /* small-caps cut: uppercase letters draw full height, lowercase draw as small caps */
+  font-family: "Cormorant SC";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/cormorant-sc-700.woff2") format("woff2");
+}
 
 :root {
   --ink: #101010;          /* primary text / buttons */
@@ -26,6 +34,7 @@
   --gutter: clamp(16px, 4vw, 48px);
   --font-body: "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-display: "Big Shoulders Display", Impact, "Arial Narrow", sans-serif;
+  --font-logo: "Cormorant SC", Georgia, "Times New Roman", serif;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -78,8 +87,14 @@ input, select, textarea { font-family: inherit; font-size: 14px; }
 .main-nav a:hover, .main-nav a.active { border-color: var(--ink); }
 
 .logo {
-  font-family: var(--font-display); font-size: 30px; font-weight: 800;
-  letter-spacing: .01em; line-height: 1; text-transform: uppercase; text-align: center;
+  /* "Compact" typed with a capital C and lowercase rest — Cormorant SC
+     draws the C at full cap height and "ompact" as small caps. */
+  font-family: var(--font-logo); font-size: 30px; font-weight: 700;
+  letter-spacing: .07em; line-height: 1; color: var(--accent);
+  display: inline-flex; flex-direction: column; align-items: center; gap: 5px;
+}
+.logo::after {
+  content: "\25C6"; font-size: 8px; color: var(--accent); opacity: .8;
 }
 
 .header-actions { display: flex; gap: 20px; justify-content: flex-end; align-items: center; }
@@ -105,7 +120,7 @@ input, select, textarea { font-family: inherit; font-size: 14px; }
   }
   .main-nav.open { display: flex; }
   .main-nav a { padding: 12px 0; border-bottom: 1px solid var(--line); }
-  .logo { text-align: left; font-size: 24px; }
+  .logo { align-items: flex-start; font-size: 26px; }
 }
 
 /* ---------- hero ---------- */
@@ -420,7 +435,7 @@ input, select, textarea { font-family: inherit; font-size: 14px; }
 .footer-grid li { padding: 4px 0; }
 .footer-grid a { font-size: 13px; color: var(--ink-soft); }
 .footer-grid a:hover { color: var(--ink); }
-.footer-brand .logo { text-align: left; font-size: 38px; margin-bottom: 8px; }
+.footer-brand .logo { align-items: flex-start; font-size: 42px; margin-bottom: 10px; }
 .footer-tagline {
   font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
   color: var(--accent); margin-bottom: 12px;
