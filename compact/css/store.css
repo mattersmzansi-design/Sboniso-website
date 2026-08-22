@@ -5,17 +5,31 @@
    ============================================================ */
 
 @font-face {
-  font-family: "Big Shoulders Display";
-  font-style: normal;
-  font-weight: 800;
-  font-display: swap;
-  src: url("../fonts/big-shoulders-display-800.woff2") format("woff2");
-}
-@font-face {
   /* small-caps cut: uppercase letters draw full height, lowercase draw as small caps */
   font-family: "Cormorant SC";
   font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/cormorant-sc-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Cormorant SC";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../fonts/cormorant-sc-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Cormorant SC";
+  font-style: normal;
   font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/cormorant-sc-700.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Cormorant SC";
+  font-style: normal;
+  font-weight: 800;
   font-display: swap;
   src: url("../fonts/cormorant-sc-700.woff2") format("woff2");
 }
@@ -32,8 +46,8 @@
   --danger: #b3261e;
   --radius: 2px;
   --gutter: clamp(16px, 4vw, 48px);
-  --font-body: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-display: "Big Shoulders Display", Impact, "Arial Narrow", sans-serif;
+  --font-body: "Cormorant SC", Georgia, "Times New Roman", serif;
+  --font-display: "Cormorant SC", Georgia, "Times New Roman", serif;
   --font-logo: "Cormorant SC", Georgia, "Times New Roman", serif;
 }
 
