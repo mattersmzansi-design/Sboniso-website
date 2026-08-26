@@ -17,7 +17,28 @@
         });
     }
 
-    /* ---------- Hero slideshow ---------- */
+    /* ---------- Hero rotating line ---------- */
+    const rotor = document.querySelector(".hero-rotate .word");
+    if (rotor) {
+        let words = [];
+        try { words = JSON.parse(rotor.getAttribute("data-rotate") || "[]"); } catch (e) { words = []; }
+        if (words.length > 1) {
+            const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            let idx = 0;
+            if (reduce) {
+                rotor.textContent = words[0];
+            } else {
+                setInterval(function () {
+                    idx = (idx + 1) % words.length;
+                    rotor.style.opacity = "0";
+                    setTimeout(function () { rotor.textContent = words[idx]; rotor.style.opacity = "1"; }, 220);
+                }, 2600);
+                rotor.style.transition = "opacity 0.22s ease";
+            }
+        }
+    }
+
+    /* ---------- Hero slideshow (legacy, safe if absent) ---------- */
     const show = document.querySelector(".slideshow");
     if (show) {
         const slides = Array.prototype.slice.call(show.querySelectorAll(".slide"));
