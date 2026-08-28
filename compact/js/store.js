@@ -66,6 +66,18 @@ function getProduct(id) {
   return PRODUCTS.find((p) => p.id === id) || null;
 }
 
+/* A cart line is either a catalogue product ({ productId, size, qty })
+   or a custom design from the Design Studio ({ custom:true, id, name,
+   category, price, size, qty, designImage }). This returns a
+   product-shaped object for either, so cart/checkout rendering and
+   totals don't need to know which kind of line they're looking at. */
+function getLineProduct(line) {
+  if (line.custom) {
+    return { id: line.id, name: line.name, category: line.category, price: line.price, sizes: [line.size] };
+  }
+  return getProduct(line.productId);
+}
+
 function qs(name) {
   return new URLSearchParams(location.search).get(name);
 }
@@ -106,6 +118,14 @@ const Cart = {
     this.write(lines);
   },
 
+  /* Custom Design Studio items always get their own line — each one
+     carries a different design image, so merging by id doesn't apply. */
+  addCustom(item) {
+    const lines = this.read();
+    lines.push(Object.assign({ custom: true, id: "custom-" + Date.now() }, item));
+    this.write(lines);
+  },
+
   updateQty(index, qty) {
     const lines = this.read();
     if (!lines[index]) return;
@@ -129,7 +149,7 @@ const Cart = {
 
   subtotal() {
     return this.read().reduce((sum, l) => {
-      const p = getProduct(l.productId);
+      const p = getLineProduct(l);
       return sum + (p ? p.price * l.qty : 0);
     }, 0);
   },
@@ -318,11 +338,14 @@ function initCartPage() {
 
     wrap.innerHTML = lines
       .map((l, i) => {
-        const p = getProduct(l.productId);
+        const p = getLineProduct(l);
         if (!p) return "";
+        const thumb = l.custom && l.designImage
+          ? '<div class="thumb"><img src="' + l.designImage + '" alt="Custom design"></div>'
+          : '<div class="thumb">Image</div>';
         return (
           '<div class="cart-line">' +
-            '<div class="thumb">Image</div>' +
+            thumb +
             '<div class="line-info">' +
               '<span class="name">' + p.name + "</span>" +
               '<span class="variant">' + p.category + " · Size " + l.size + "</span>" +
@@ -390,7 +413,7 @@ function initCheckoutPage() {
     const itemsEl = document.getElementById("co-items");
     itemsEl.innerHTML = lines
       .map((l) => {
-        const p = getProduct(l.productId);
+        const p = getLineProduct(l);
         return p
           ? '<div class="summary-row"><span>' + p.name + " × " + l.qty +
             ' <small style="color:var(--ink-faint)">(' + l.size + ")</small></span><span>" +
