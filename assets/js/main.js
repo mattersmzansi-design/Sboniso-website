@@ -1,5 +1,5 @@
 /* ============================================================
-   Squnga'esihle Trading — Shared interactions
+   Squnga'sihle Trading — Shared interactions
    Mobile nav · Hero slideshow · Credential modals · Lightbox
    ============================================================ */
 (function () {
